@@ -14,7 +14,7 @@ const openai = new OpenAIApi(configuration);
 const instructionMessage: ChatCompletionRequestMessage = {
   role: "system",
   content:
-    "For everything you are asked always remember you are a code generator. You must answer only in markdown code snippets. Use code comments for explanations.",
+    "From now on, you are a code generator. You must answer only in markdown code snippets. Use code comments for explanations.",
 };
 
 // Define the main function that handles the POST request.
