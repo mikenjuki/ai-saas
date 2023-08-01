@@ -1,5 +1,6 @@
 "use client";
 
+import { FC } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import Image from "next/image";
@@ -15,8 +16,14 @@ import {
   Settings,
   VideoIcon,
 } from "lucide-react";
+import { FreeCounter } from "./FreeCounter";
 
 const montserrat = Montserrat({ weight: "600", subsets: ["latin"] });
+
+// Types
+interface SidebarProps {
+  apiLimitCount: number;
+}
 
 const routes = [
   {
@@ -62,7 +69,7 @@ const routes = [
   },
 ];
 
-const Sidebar = () => {
+const Sidebar: FC<SidebarProps> = ({ apiLimitCount = 0 }) => {
   const pathname = usePathname();
 
   return (
@@ -98,6 +105,7 @@ const Sidebar = () => {
           ))}
         </div>
       </div>
+      <FreeCounter apiLimitCount={apiLimitCount} />
     </div>
   );
 };
