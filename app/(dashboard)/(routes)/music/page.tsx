@@ -1,12 +1,11 @@
 "use client";
 
 import * as z from "zod";
-import { Music } from "lucide-react";
+import { Music, Send } from "lucide-react";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
-import { ChatCompletionRequestMessage } from "openai";
 import axios from "axios";
 
 import { formSchema } from "./constants";
@@ -37,7 +36,7 @@ const MusicPage = () => {
       setMusic(undefined);
 
       // Send a POST request to the "/api/conversation" endpoint with the 'newMessages' array as the payload.
-      const response = await axios.post("/api/music");
+      const response = await axios.post("/api/music", values);
 
       setMusic(response.data.audio);
 
@@ -115,11 +114,11 @@ const MusicPage = () => {
           )}
 
           {!music && !isLoading && <Empty label="No music generated." />}
-          {/* {music && (
+          {music && (
             <audio controls className="w-full mt-8">
               <source src={music} />
             </audio>
-          )} */}
+          )}
         </div>
       </div>
     </div>
