@@ -26,10 +26,13 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
+import useProModal from "@/hooks/use-pro-modal";
 
 const ImagePage = () => {
   const [images, setImages] = useState<string[]>([]);
   const router = useRouter();
+
+  const proModal = useProModal();
 
   //initialize form from shad which uses zod & react hook form
   const form = useForm<z.infer<typeof formSchema>>({
@@ -61,8 +64,9 @@ const ImagePage = () => {
 
       form.reset();
     } catch (error: any) {
-      // open pro modal: TODO
-      console.log(error);
+      if (error?.response?.status === 403) {
+        proModal.onOpen();
+      }
     } finally {
       // Regardless of whether there was an error or not, refresh the router  to update the UI
       router.refresh();
