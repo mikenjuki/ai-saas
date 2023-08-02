@@ -4,6 +4,7 @@ import { NextResponse } from "next/server";
 import { Configuration, OpenAIApi } from "openai";
 
 import { incrementApiLimit, checkApiLimit } from "@/lib/api-limit";
+import { checkSubscription } from "@/lib/subscription";
 
 // Create an instance of Configuration for the OpenAI API and pass the API key from the environment.
 const configuration = new Configuration({
@@ -43,8 +44,9 @@ export async function POST(req: Request) {
     }
 
     const freeTrial = await checkApiLimit();
+    const isPro = await checkSubscription();
 
-    if (!freeTrial) {
+    if (!freeTrial && !isPro) {
       return new NextResponse(
         "Free trial has expired. Please upgrade to pro.",
         { status: 403 }
@@ -58,7 +60,9 @@ export async function POST(req: Request) {
       messages,
     });
 
-    await incrementApiLimit();
+    if (!isPro) {
+      await incrementApiLimit();
+    }
 
     // Return the API response's message content as a JSON response.
     return NextResponse.json(response.data.choices[0].message);
