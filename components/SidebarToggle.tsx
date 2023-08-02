@@ -8,9 +8,10 @@ import { useState, useEffect } from "react";
 
 interface SidebarProps {
   apiLimiCount: number;
+  isPro: boolean;
 }
 
-const SidebarToggle = ({ apiLimiCount }: SidebarProps) => {
+const SidebarToggle = ({ apiLimiCount = 0, isPro = false }: SidebarProps) => {
   const [isMounted, setIsMounted] = useState(false);
 
   useEffect(() => {
@@ -29,7 +30,7 @@ const SidebarToggle = ({ apiLimiCount }: SidebarProps) => {
         </Button>
       </SheetTrigger>
       <SheetContent side={"left"} className="p-0">
-        <Sidebar apiLimitCount={apiLimiCount} />
+        <Sidebar apiLimitCount={apiLimiCount} isPro={isPro} />
       </SheetContent>
     </Sheet>
   );

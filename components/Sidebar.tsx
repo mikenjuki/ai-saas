@@ -23,6 +23,7 @@ const montserrat = Montserrat({ weight: "600", subsets: ["latin"] });
 // Types
 interface SidebarProps {
   apiLimitCount: number;
+  isPro: boolean;
 }
 
 const routes = [
@@ -69,7 +70,7 @@ const routes = [
   },
 ];
 
-const Sidebar: FC<SidebarProps> = ({ apiLimitCount = 0 }) => {
+const Sidebar: FC<SidebarProps> = ({ apiLimitCount = 0, isPro = false }) => {
   const pathname = usePathname();
 
   return (
@@ -105,7 +106,7 @@ const Sidebar: FC<SidebarProps> = ({ apiLimitCount = 0 }) => {
           ))}
         </div>
       </div>
-      <FreeCounter apiLimitCount={apiLimitCount} />
+      <FreeCounter apiLimitCount={apiLimitCount} isPro={isPro} />
     </div>
   );
 };

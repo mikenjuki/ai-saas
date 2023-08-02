@@ -32,6 +32,7 @@ const ProModal = () => {
       window.location.href = response.data.url;
     } catch (error) {
       // toast.error("Something went wrong");
+      console.log(error, "STRIPE_CLIENT_ERROR");
     } finally {
       setLoading(false);
     }
