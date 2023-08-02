@@ -6,7 +6,11 @@ import { Sheet, SheetContent, SheetTrigger } from "./ui/sheet";
 import Sidebar from "./Sidebar";
 import { useState, useEffect } from "react";
 
-const SidebarToggle = () => {
+interface SidebarProps {
+  apiLimiCount: number;
+}
+
+const SidebarToggle = ({ apiLimiCount }: SidebarProps) => {
   const [isMounted, setIsMounted] = useState(false);
 
   useEffect(() => {
@@ -25,7 +29,7 @@ const SidebarToggle = () => {
         </Button>
       </SheetTrigger>
       <SheetContent side={"left"} className="p-0">
-        <Sidebar />
+        <Sidebar apiLimitCount={apiLimiCount} />
       </SheetContent>
     </Sheet>
   );

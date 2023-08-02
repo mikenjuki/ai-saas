@@ -2,11 +2,14 @@ import React from "react";
 import { UserButton } from "@clerk/nextjs";
 
 import SidebarToggle from "@/components/SidebarToggle";
+import { getApiLimitCount } from "@/lib/api-limit";
 
-const Navbar = () => {
+const Navbar = async () => {
+  const apiLimitCount = await getApiLimitCount();
+
   return (
     <div className="flex items-center p-4">
-      <SidebarToggle />
+      <SidebarToggle apiLimiCount={apiLimitCount} />
 
       <div className="flex w-full justify-end">
         <UserButton afterSignOutUrl="/" />
