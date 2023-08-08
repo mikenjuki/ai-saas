@@ -16,7 +16,7 @@ export const LandingHero = () => {
         <div className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-pink-600">
           <TypewriterComponent
             options={{
-              strings: ["Chatbot.", "Image Generation.", "Video Generation."],
+              strings: ["Chatbot.", "Image Generation.", "Music Generation."],
               autoStart: true,
               loop: true,
             }}
