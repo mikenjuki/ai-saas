@@ -2,6 +2,7 @@ generator client {
   provider = "prisma-client-js"
 }
 
+// Data Source Config
 datasource db {
   provider = "mysql"
   url = env("DATABASE_URL")
@@ -25,3 +26,5 @@ model UserSubscription {
   stripePriceId          String?   @map(name: "stripe_price_id")
   stripeCurrentPeriodEnd DateTime? @map(name: "stripe_current_period_end")
 }
+
+//npx prisma studio
